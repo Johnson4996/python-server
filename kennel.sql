@@ -69,3 +69,12 @@ INSERT INTO `Animal` VALUES (null, "Daps", "Kennel", "Boxer", 2, 2);
 
 
 
+
+SELECT
+    c.id,
+    c.name,
+    c.address,
+    c.email,
+    c.password
+FROM customer c
+WHERE c.id = 2
