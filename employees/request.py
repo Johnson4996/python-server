@@ -123,3 +123,27 @@ def update_employee(id, new_employee):
     if employee["id"] == id:
       EMPLOYEES[index] = new_employee
       break
+
+def get_employees_by_location(locId):
+  with sqlite3.connect("./kennel.db") as conn:
+    conn.row_factory= sqlite3.Row
+    db_cursor = conn.cursor()
+
+    db_cursor.execute("""
+        SELECT
+            e.id,
+            e.name,
+            e.address,
+            e.location_id
+        FROM employee e
+        WHERE e.location_id = ?
+        """, ( locId, ))
+
+    employees = []
+    dataset = db_cursor.fetchall()
+
+    for row in dataset:
+      employee = Employee(row['id'],row['name'],row['address'],row['location_id'])
+      employees.append(employee)
+
+  return json.dumps(employees)
