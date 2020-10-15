@@ -69,11 +69,4 @@ INSERT INTO `Animal` VALUES (null, "Daps", "Kennel", "Boxer", 2, 2);
 
 
 
-
-SELECT
-            e.id,
-            e.name,
-            e.address,
-            e.location_id
-        FROM employee e
-        WHERE e.location_id = 2
+SELECT * FROM Animal ORDER BY id DESC;
